@@ -1,0 +1,5 @@
+# mac hidden files
+.DS_Store
+
+## secret files
+*/secrets.json
