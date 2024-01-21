@@ -63,12 +63,12 @@
 					<!-- Year -->
 					<div class="six columns">
 						<label for="formYear">Year</label>
-						<input id="formYear"class="u-full-width" type="text" placeholder="ex. 2014">
+						<input id="formYear" class="u-full-width" type="number" placeholder="ex. 2014">
 					</div>
 					<!-- Max Price -->
 					<div class="three columns">
 						<label for="formPrice">Max Price ($)</label>
-						<input id="formPrice" class="u-full-width" type="text" placeholder="ex. 8000" >
+						<input id="formPrice" class="u-full-width" type="number" placeholder="ex. 8000">
 					</div>
 				</div>
 
@@ -76,12 +76,17 @@
 					<!-- Make -->
 					<div class="six columns">
 						<label for="formMake">Make</label>
-						<input id="formMake"class="u-full-width" type="text" placeholder="ex. Toyota">
+						<input id="formMake" class="u-full-width" type="text" placeholder="ex. Toyota">
 					</div>
-					<!-- ??? -->
+					<!-- Drivetrain -->
 					<div class="three columns">
-						<label for="???">???</label>
-						<input id="???" class="u-full-width" type="text" placeholder="ex. ???" >
+						<label for="formDrivetrain">Drivetrain</label>
+						<select id="formDrivetrain" class="u-full-width">
+							<option value="*" selected="selected">*</option>
+							<option value="RWD">RWD</option>
+							<option value="FWD">FWD</option>
+							<option value="AWD">AWD</option>
+						</select>
 					</div>
 				</div>
 
@@ -89,12 +94,16 @@
 					<!-- Model -->
 					<div class="six columns">
 						<label for="formModel">Model</label>
-						<input id="formModel" class="u-full-width" type="text" placeholder="ex. Camry" >
+						<input id="formModel" class="u-full-width" type="text" placeholder="ex. Camry">
 					</div>
-					<!-- ??? -->
+					<!-- Transmission -->
 					<div class="three columns">
-						<label for="???">???</label>
-						<input id="???" class="u-full-width" type="text" placeholder="ex. ???" >
+						<label for="formTransmission">Transmission</label>
+						<select id="formTransmission" class="u-full-width">
+							<option value="*" selected="selected">*</option>
+							<option value="manual">Manual</option>
+							<option value="auto">Automatic</option>
+						</select>
 					</div>
 				</div>
 
@@ -112,13 +121,15 @@
 		<table id="tableResults" class="u-full-width">
 			<h3>results</h3>
 			<thead id="tableHead">
-			  <tr>
-				<th>year</th>
-				<th>make</th>
-				<th>model</th>
-				<th>price</th>
-				<th></th>
-			  </tr>
+				<tr>
+					<th>year</th>
+					<th>make</th>
+					<th>model</th>
+					<th>dt</th>
+					<th>trans</th>
+					<th>price</th>
+					<th></th>
+				</tr>
 			</thead>
 			<!-- <tbody>
 			  <tr>
@@ -136,7 +147,7 @@
 				<td><button href="">view</button></td>
 			  </tr>
 			</tbody> -->
-		  </table>
+		</table>
 	</div>
 </body>
 

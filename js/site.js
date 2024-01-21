@@ -30,14 +30,21 @@ function getFormData() {
     let make = document.getElementById("formMake").value;
     let model = document.getElementById("formModel").value;
     let price = document.getElementById("formPrice").value;
+    let operator = null;
 
-    // string validation (TODO expand)
-    // if (!year) {year = "*"}
-    // if (!make) {make = "*"}
-    // if (!model) {model = "*"}
-    // if (!price) {price = "*"}
+    let dt = document.getElementById("formDrivetrain").value;
+    let trans = document.getElementById("formTransmission").value;
 
-    return {"year": year, "make": make, "model": model, "price": price};
+    if (["<", ">", "=", "!"].includes(year[0])) {
+        operator = year[0];
+        year = year.slice(1);
+    } else if (["+", "-"].includes(year.slice(-1))) {
+        operator = year.slice(-1);
+        year = year.slice(0,-1);
+    }
+
+    return {"year": year, "make": make, "model": model, "price":price,
+            "operator": operator, "dt": dt, "trans": trans};
 }
 
 
@@ -50,8 +57,24 @@ function search(params) {
     let filteredData = data;
 
     if (params["year"]) {
-        filteredData = filteredData.filter((car) => car["year"] >= params["year"]);
+        let operator = params["operator"];
+        if (!operator || operator === "=") {
+            filteredData = filteredData.filter((car) => car["year"] == params["year"]);
+        } else if (operator === "<") {
+            filteredData = filteredData.filter((car) => car["year"] < params["year"]);
+        } else if (operator === ">") {
+            filteredData = filteredData.filter((car) => car["year"] > params["year"]);
+        } else if (operator === "!") {
+            filteredData = filteredData.filter((car) => car["year"] != params["year"]);
+        } else if (operator === "-") {
+            filteredData = filteredData.filter((car) => car["year"] <= params["year"]);
+        } else if (operator === "+") {
+            filteredData = filteredData.filter((car) => car["year"] >= params["year"]);
+        } else {
+            console.log("ERROR: couldn't read operator");
+        }
     }
+
     if (params["make"]) {
         filteredData = filteredData.filter((car) => car["make"] === params["make"]);
     }
@@ -61,7 +84,13 @@ function search(params) {
     if (params["price"]) {
         filteredData = filteredData.filter((car) => car["price"] <= params["price"]);
     }
-
+    if (params["dt"] && params["dt"] !== "*") {
+        filteredData = filteredData.filter((car) => car["dt"] === params["dt"]);
+    }
+    if (params["trans"] && params["trans"] !== "*") {
+        filteredData = filteredData.filter((car) => car["trans"] === params["trans"]);
+    }
+    
     return filteredData;
 }
 
@@ -90,6 +119,8 @@ function populateTable(data) {
         let cellYear = row.insertCell();
         let cellMake = row.insertCell();
         let cellModel = row.insertCell();
+        let cellDT = row.insertCell();
+        let cellTrans = row.insertCell();
         let cellPrice = row.insertCell();
         let cellView = row.insertCell();
 
@@ -104,6 +135,8 @@ function populateTable(data) {
         cellYear.appendChild(document.createTextNode(data[i]["year"]));
         cellMake.appendChild(document.createTextNode(data[i]["make"]));
         cellModel.appendChild(document.createTextNode(data[i]["model"]));
+        cellDT.appendChild(document.createTextNode(data[i]["dt"]));
+        cellTrans.appendChild(document.createTextNode(data[i]["trans"]));
         cellPrice.appendChild(document.createTextNode(formatPrice(data[i]["price"], "CAD")));
         cellView.appendChild(viewButton);
     }
@@ -122,25 +155,36 @@ function generateTestData() {
 
     // define some test make/model pairs
     make_models = {
-        "toyota": ["camry", "corolla", "supra", "mr2"],
-        "lexus": ["ls300", "ls400"],
-        "bmw": ["2 series", "3 series", "m2", "M4"],
-        "porsche": ["964", "911", "991", "targa 4"],
-        "lancia": ["delta", "lambda", "2000", "037"]
+        "toyota": ["camry", "corolla", "supra", "mr2", "RAV4", "highlander", "gr86", "tundra"],
+        "lexus": ["ls300", "ls400", "is300", "is400", "RC", "RC F", "LX"],
+        "bmw": ["2 series", "3 series", "m2", "M4", "Z4", "Z", "X2", "X3", "X4"],
+        "porsche": ["718", "964", "911", "991", "targa 4", "taycan", "panamera", "macan", "cayenne"],
+        "lancia": ["delta", "lambda", "2000", "037", "ypsilon", "voyager", "stratos", "flavia", "appia", "flamina"],
+        "mazda": ["2", "3", "6", "CX-30", "CX-50", "CX-60", "RX-7", "RX-8"],
+        "honda": ["civic", "Civic Type-R", "accord", "integra", "CR-V", "nsx", "s2000", "prelude"],
+        "nissan": ["altima", "sentra", "skyline", "pathfinder", "rogue", "240z", "350z", "silvia"],
+        "ford": ["focus", "escort", "mustang", "bronco", "escape", "f-150", "f-250", "f-350", "explorer"],
+        "gmc": ["hummer", "yukon", "sierra", "5500"]
     }
+
+    dt = ["RWD", "FWD", "AWD"];
+    trans = ["auto", "manual"];
 
     // Generate random combinations of year/make/model and a random price
     // for (let i = 0; i < Object.keys(make_models).length; i++) {
     for (make in make_models) {
-        for (let i = 0; i < make_models[make].length; i++)
-            for (let year = 1980; year < 2025; year += 4) {
+        for (let i = 0; i < make_models[make].length; i++) {
+            for (let j = 0; j < 2; j++) {
                 data.push(formatData({
-                    "year": year,
+                    "year": Math.random() * (2025 - 1980) + 1980,
                     "make": make,
                     "model": make_models[make][i],
-                    "price": Math.floor(Math.random() * 150) * 100
+                    "price": Math.floor(Math.random() * 150) * 100,
+                    "dt": dt[Math.floor(Math.random() * dt.length)],
+                    "trans": trans[Math.floor(Math.random() * trans.length)]
                 }))
             }
+        }
     }
     return data;
 }
@@ -156,6 +200,7 @@ function formatData(car) {
     let make = car["make"];
     let model = car["model"];
     let price = car["price"];
+    // drivetrain and transmission don't need formatting (at the moment)
 
     // make
     if (["ALPINA", "BMW", "MINI", "GMC", "AMC"].includes(make.toUpperCase())) {
@@ -165,15 +210,15 @@ function formatData(car) {
     }
 
     // model
-    if (model.match(/^\d/) || model.match(/^[e]\d{2}/)) {
+    if (model.match(/^\d/) || model.match(/^[e]\d{2}/ || model.match(/^[ls]\d{2}/))) {
         // pass
-    } else if (["MR2", "M2", "M3", "M4"].includes(model.toUpperCase())) {
+    } else if (["MR2", "M2", "M3", "M4", "GR86"].includes(model.toUpperCase())) {
         model = model.toUpperCase();
     } else {
         model = model[0].toUpperCase() + model.slice(1);
     }
 
-    return {"year": parseInt(year), "make": make, "model": model, "price": parseFloat(price)}
+    return {"year": parseInt(year), "make": make, "model": model, "price": parseFloat(price), "dt": car["dt"], "trans": car["trans"]}
 }
 
 
