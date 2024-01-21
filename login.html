@@ -33,15 +33,15 @@
 
 	<!-- JAVASCRIPT
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<script type="text/javascript" src="js/site.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
 
 
 </head>
 
 <body>
 	<div class="topnav container">
-		<a class="active" href="">HOME</a>
-		<a href="login.html">LOGIN</a>
+		<a class="active" href="index.html">HOME</a>
+		<a class="active" href="">LOGIN</a>
 		<a href="https://github.com/ttamre/carketplace" target="_blank" rel="noopener noreferrer">GITHUB</a>
 	</div>
 
@@ -57,87 +57,33 @@
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<div class="container">
 		<div class="row">
-			<form id="formCar">
+			<form id="loginForm">
 
+                <!-- Email/Username -->
 				<div class="row">
-					<!-- Year -->
 					<div class="six columns">
-						<label for="formYear">Year</label>
-						<input id="formYear"class="u-full-width" type="text" placeholder="ex. 2014">
-					</div>
-					<!-- Max Price -->
-					<div class="three columns">
-						<label for="formPrice">Max Price ($)</label>
-						<input id="formPrice" class="u-full-width" type="text" placeholder="ex. 8000" >
+						<label for="loginEmail">Email/Username</label>
+						<input id="loginEmail"class="u-full-width" type="text">
 					</div>
 				</div>
 
+                <!-- Password -->
 				<div class="row">
-					<!-- Make -->
 					<div class="six columns">
-						<label for="formMake">Make</label>
-						<input id="formMake"class="u-full-width" type="text" placeholder="ex. Toyota">
-					</div>
-					<!-- ??? -->
-					<div class="three columns">
-						<label for="???">???</label>
-						<input id="???" class="u-full-width" type="text" placeholder="ex. ???" >
+						<label for="loginPassword">Password</label>
+						<input id="loginPassword"class="u-full-width" type="password">
 					</div>
 				</div>
 
-				<div class="row">
-					<!-- Model -->
-					<div class="six columns">
-						<label for="formModel">Model</label>
-						<input id="formModel" class="u-full-width" type="text" placeholder="ex. Camry" >
-					</div>
-					<!-- ??? -->
-					<div class="three columns">
-						<label for="???">???</label>
-						<input id="???" class="u-full-width" type="text" placeholder="ex. ???" >
-					</div>
-				</div>
-
-				<!-- Submit -->
-				<input id="formSubmit" type="button" value="Submit">
+				<!-- Buttons -->
+                <input id="loginSubmit" type="button" value="Login">
+				<input id="loginCreate" type="button" value="Create">
+                <input id="loginForgot" type="button" value="Forgot Password?">
 
 			</form>
 		</div>
 	</div>
 	<hr>
-
-	<!-- Table
-	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<div id="divResults" class="container" style="visibility: hidden">
-		<table id="tableResults" class="u-full-width">
-			<h3>results</h3>
-			<thead id="tableHead">
-			  <tr>
-				<th>year</th>
-				<th>make</th>
-				<th>model</th>
-				<th>price</th>
-				<th></th>
-			  </tr>
-			</thead>
-			<!-- <tbody>
-			  <tr>
-				<td>2014</td>
-				<td>Toyota</td>
-				<td>Camry</td>
-				<td>$8000</td>
-				<td><button href="">view</button></td>
-			  </tr>
-			  <tr>
-				<td>2001</td>
-				<td>BMW</td>
-				<td>330Ci</td>
-				<td>$6000</td>
-				<td><button href="">view</button></td>
-			  </tr>
-			</tbody> -->
-		  </table>
-	</div>
 </body>
 
 </html>
