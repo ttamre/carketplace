@@ -2,11 +2,11 @@
   "name": "carketplace",
   "version": "1.0.0",
   "description": "used vehicle website",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node .",
-    "dev": "nodemon . --no-deprecation"
+    "start": "node public/app.js",
+    "dev": "nodemon --no-deprecation public/app.js"
   },
   "repository": {
     "type": "git",

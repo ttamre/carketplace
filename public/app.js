@@ -7,13 +7,12 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const kijiji = require('./kijiji')
+const kijiji = require('../src/kijiji')
 
 const app = express();
 const port = 5000;
 
-app.use('/css', express.static('css'));
-app.use('/images', express.static('images'));
+app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
 
@@ -34,11 +33,12 @@ app.post('/', (req, res) => {
     let cars = kijiji.searchCars(req.body);
 
     // send return data to create table function (util.js)
-    kijiji.createTable(cars)
+    kijiji.createTable(cars);
+    res.sendFile('index.html', {root: __dirname});
 })
 
 
 
 app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+    console.info(`Now listening on port ${port}`);
 });
