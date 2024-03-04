@@ -21,27 +21,26 @@
 
 	<!-- ICON
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
+	<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
 
 	<!-- CSS
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/skeleton.css">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/skeleton.css">
 
 	<!-- JAVASCRIPT
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<script type="text/javascript" src="js/site.js"></script>
+	<!-- <script type="text/javascript" src="js/index.js"></script> -->
 
 
 </head>
 
 <body>
 	<div class="topnav container">
-		<a class="active" href="">HOME</a>
-		<a href="login.html">LOGIN</a>
+		<a href="/" class="active" href="">HOME</a>
+		<a href="login">LOGIN</a>
 		<a href="https://github.com/ttamre/carketplace" target="_blank" rel="noopener noreferrer">GITHUB</a>
 	</div>
 
@@ -57,18 +56,18 @@
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<div class="container">
 		<div class="row">
-			<form id="formCar">
+			<form method="post" action="/" id="formCar">
 
 				<div class="row">
 					<!-- Year -->
 					<div class="six columns">
 						<label for="formYear">Year</label>
-						<input id="formYear" class="u-full-width" type="number" placeholder="ex. 2014">
+						<input name="formYear" id="formYear" class="u-full-width" type="number" placeholder="ex. 2014"">
 					</div>
 					<!-- Max Price -->
 					<div class="three columns">
 						<label for="formPrice">Max Price ($)</label>
-						<input id="formPrice" class="u-full-width" type="number" placeholder="ex. 8000">
+						<input name="formPrice" id="formPrice" class="u-full-width" type="number" placeholder="ex. 8000">
 					</div>
 				</div>
 
@@ -76,12 +75,12 @@
 					<!-- Make -->
 					<div class="six columns">
 						<label for="formMake">Make</label>
-						<input id="formMake" class="u-full-width" type="text" placeholder="ex. Toyota">
+						<input name="formMake" id="formMake" class="u-full-width" type="text" placeholder="ex. Toyota">
 					</div>
 					<!-- Drivetrain -->
 					<div class="three columns">
 						<label for="formDrivetrain">Drivetrain</label>
-						<select id="formDrivetrain" class="u-full-width">
+						<select name="formDrivetrain" id="formDrivetrain" class="u-full-width">
 							<option value="*" selected="selected">*</option>
 							<option value="RWD">RWD</option>
 							<option value="FWD">FWD</option>
@@ -94,12 +93,12 @@
 					<!-- Model -->
 					<div class="six columns">
 						<label for="formModel">Model</label>
-						<input id="formModel" class="u-full-width" type="text" placeholder="ex. Camry">
+						<input name="formModel" id="formModel" class="u-full-width" type="text" placeholder="ex. Camry">
 					</div>
 					<!-- Transmission -->
 					<div class="three columns">
 						<label for="formTransmission">Transmission</label>
-						<select id="formTransmission" class="u-full-width">
+						<select name="formTransmission" id="formTransmission" class="u-full-width">
 							<option value="*" selected="selected">*</option>
 							<option value="manual">Manual</option>
 							<option value="auto">Automatic</option>
@@ -108,7 +107,7 @@
 				</div>
 
 				<!-- Submit -->
-				<input id="formSubmit" type="button" value="Submit">
+				<input id="formSubmit" type="submit" value="Submit">
 
 			</form>
 		</div>
