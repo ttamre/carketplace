@@ -30,7 +30,7 @@ app.get('/login', (req, res) => {
 // Get user form data via POST request
 app.post('/', (req, res) => {
     // TODO scrape kijiji autos
-    return kijiji.searchTestData(req.body);
+    kijiji.searchTestData(req.body);
 
     // TODO separate table creation into react frontend, then make POST request to get table data
     res.sendFile('index.html', {root: __dirname});

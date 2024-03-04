@@ -28,14 +28,6 @@ module.exports = {
         }
         
         kijiji.search(params, options).then(ads => {
-            // TODO figure out why non-cars are not being filtered out
-            let data = [];
-
-            for (let i = 0; i < ads.length; ++i) {
-                // console.log(`${ads[i].title}\n${ads[i]['url']}\n`)
-                data.push(ads[i])
-            }
-
             // for debugging - remove and delete data directory when solved
             fs.writeFile(
                 `data/${new Date().toLocaleString().replaceAll('/', '.').replaceAll(',', '')}.json`,
@@ -43,8 +35,7 @@ module.exports = {
                 (err) => {console.error(err)});
 
             console.log(params);
-            this.searchTestData();
-            return data
+            return ads
             
         }).catch(console.error);
     },
