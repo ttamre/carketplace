@@ -11,13 +11,13 @@ const kijiji = require('kijiji-scraper');
 const fs = require('fs');
 
 module.exports = {
-    searchCars: function(formData) {
+    searchKijiji: function(formData) {
         const params = {
             locationID: kijiji.locations.ALBERTA.EDMONTON_AREA,
             categoryID: kijiji.categories.CARS_AND_VEHICLES.CARS_AND_TRUCKS,
-            keywords: `${formData["formYear"]} ${formData["formMake"]} ${formData["formModel"]}`.trim(),
+            keywords: `${formData["year"]} ${formData["make"]} ${formData["model"]}`.trim(),
             minPrice: 0,
-            maxPrice: formData["formPrice"].trim() == '' ? 0 : parseInt(formData["formPrice"]),
+            maxPrice: formData["price"].trim() == '' ? 0 : parseInt(formData["price"]),
             sortByName: "priceAsc"
         }
 
@@ -32,7 +32,7 @@ module.exports = {
             let data = [];
 
             for (let i = 0; i < ads.length; ++i) {
-                console.log(`${ads[i].title}\n${ads[i]['url']}\n`)
+                // console.log(`${ads[i].title}\n${ads[i]['url']}\n`)
                 data.push(ads[i])
             }
 
@@ -43,9 +43,56 @@ module.exports = {
                 (err) => {console.error(err)});
 
             console.log(params);
+            this.searchTestData();
+            return data
             
         }).catch(console.error);
     },
 
-    createTable: function(data) {}
+    searchTestData: function(formData) {
+        let data = require('./test_data.json');
+        let filteredData = data;
+
+        if (formData["year"]) {
+            let operator = null;
+            if (isNaN(formData["year"][0])) {
+                operator = formData["year"][0];
+                formData["year"] = +(formData["year"].substring(1))
+            }
+
+            if (!operator || operator === "=") {
+                filteredData = filteredData.filter((car) => car["year"] == formData["year"]);
+            } else if (operator === "<") {
+                filteredData = filteredData.filter((car) => car["year"] < formData["year"]);
+            } else if (operator === ">") {
+                filteredData = filteredData.filter((car) => car["year"] > formData["year"]);
+            } else if (operator === "!") {
+                filteredData = filteredData.filter((car) => car["year"] != formData["year"]);
+            } else if (operator === "-") {
+                filteredData = filteredData.filter((car) => car["year"] <= formData["year"]);
+            } else if (operator === "+") {
+                filteredData = filteredData.filter((car) => car["year"] >= formData["year"]);
+            } else {
+                console.error("received invalid year from form data");
+            }
+        }
+
+        if (formData["make"]) {
+            filteredData = filteredData.filter((car) => car["make"] === formData["make"]);
+        }
+        if (formData["model"]) {
+            filteredData = filteredData.filter((car) => car["model"] === formData["model"]);
+        }
+        if (formData["price"]) {
+            filteredData = filteredData.filter((car) => car["price"] <= +formData["price"]);
+        }
+        if (formData["drivetrain"] && formData["drivetrain"] !== "*") {
+            filteredData = filteredData.filter((car) => car["drivetrain"] === formData["drivetrain"]);
+        }
+        if (formData["transmission"] && formData["transmission"] !== "*") {
+            filteredData = filteredData.filter((car) => car["transmission"] === formData["transmission"]);
+        }
+        
+        return filteredData;
+    }
 }
