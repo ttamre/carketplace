@@ -21,27 +21,21 @@
 
 	<!-- ICON
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
+	<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
 
 	<!-- CSS
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/skeleton.css">
-
-	<!-- JAVASCRIPT
-	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<script type="text/javascript" src="js/site.js"></script>
-
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/skeleton.css">
 
 </head>
 
 <body>
 	<div class="topnav container">
-		<a class="active" href="">HOME</a>
-		<a href="login.html">LOGIN</a>
+		<a href="/" class="active" href="">HOME</a>
+		<a href="login">LOGIN</a>
 		<a href="https://github.com/ttamre/carketplace" target="_blank" rel="noopener noreferrer">GITHUB</a>
 	</div>
 
@@ -57,18 +51,18 @@
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<div class="container">
 		<div class="row">
-			<form id="formCar">
+			<form method="post" action="/" id="formCar">
 
 				<div class="row">
 					<!-- Year -->
 					<div class="six columns">
 						<label for="formYear">Year</label>
-						<input id="formYear" class="u-full-width" type="number" placeholder="ex. 2014">
+						<input name="year" id="formYear" class="u-full-width" type="text" placeholder="ex. 2014"">
 					</div>
 					<!-- Max Price -->
 					<div class="three columns">
 						<label for="formPrice">Max Price ($)</label>
-						<input id="formPrice" class="u-full-width" type="number" placeholder="ex. 8000">
+						<input name="price" id="formPrice" class="u-full-width" type="number" placeholder="ex. 8000">
 					</div>
 				</div>
 
@@ -76,15 +70,16 @@
 					<!-- Make -->
 					<div class="six columns">
 						<label for="formMake">Make</label>
-						<input id="formMake" class="u-full-width" type="text" placeholder="ex. Toyota">
+						<input name="make" id="formMake" class="u-full-width" type="text" placeholder="ex. Toyota">
 					</div>
 					<!-- Drivetrain -->
 					<div class="three columns">
 						<label for="formDrivetrain">Drivetrain</label>
-						<select id="formDrivetrain" class="u-full-width">
+						<select name="drivetrain" id="formDrivetrain" class="u-full-width">
 							<option value="*" selected="selected">*</option>
 							<option value="RWD">RWD</option>
 							<option value="FWD">FWD</option>
+							<option value="4WD">4WD</option>
 							<option value="AWD">AWD</option>
 						</select>
 					</div>
@@ -94,21 +89,21 @@
 					<!-- Model -->
 					<div class="six columns">
 						<label for="formModel">Model</label>
-						<input id="formModel" class="u-full-width" type="text" placeholder="ex. Camry">
+						<input name="model" id="formModel" class="u-full-width" type="text" placeholder="ex. Camry">
 					</div>
 					<!-- Transmission -->
 					<div class="three columns">
 						<label for="formTransmission">Transmission</label>
-						<select id="formTransmission" class="u-full-width">
+						<select name="transmission" id="formTransmission" class="u-full-width">
 							<option value="*" selected="selected">*</option>
-							<option value="manual">Manual</option>
-							<option value="auto">Automatic</option>
+							<option value="Manual">Manual</option>
+							<option value="Auto">Automatic</option>
 						</select>
 					</div>
 				</div>
 
 				<!-- Submit -->
-				<input id="formSubmit" type="button" value="Submit">
+				<input id="formSubmit" type="submit" value="Submit">
 
 			</form>
 		</div>
@@ -116,39 +111,40 @@
 	<hr>
 
 	<!-- Table
-	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<div id="divResults" class="container" style="visibility: hidden">
-		<table id="tableResults" class="u-full-width">
-			<h3>results</h3>
-			<thead id="tableHead">
-				<tr>
-					<th>year</th>
-					<th>make</th>
-					<th>model</th>
-					<th>dt</th>
-					<th>trans</th>
-					<th>price</th>
-					<th></th>
-				</tr>
-			</thead>
-			<!-- <tbody>
-			  <tr>
-				<td>2014</td>
-				<td>Toyota</td>
-				<td>Camry</td>
-				<td>$8000</td>
-				<td><button href="">view</button></td>
-			  </tr>
-			  <tr>
-				<td>2001</td>
-				<td>BMW</td>
-				<td>330Ci</td>
-				<td>$6000</td>
-				<td><button href="">view</button></td>
-			  </tr>
-			</tbody> -->
-		</table>
-	</div>
+	––––––––––––––––––––––––––––––––––––––––––––––––––style="visibility: hidden" -->
+	<% if (cars.length > 0) { %>
+		<div id="divResults" class="container" >
+			<table id="tableResults" class="u-full-width tableResults">
+				<h3>results</h3>
+				<thead id="tableHead">
+					<tr>
+						<th>year</th>
+						<th>make</th>
+						<th>model</th>
+						<th>dt</th>
+						<th>trans</th>
+						<th>price</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% cars.forEach(function(car) { %>
+						<tr>
+							<td><%= car.year %></td>
+							<td><%= car.make %></td>
+							<td><%= car.model %></td>
+							<td><%= car.drivetrain %></td>
+							<td><%= car.transmission %></td>
+							<td><%= car.price %></td>
+							<td>
+								<a href="<%= car.link %>"target="_blank" rel="noopener noreferrer" class="button">view</a>
+							</td>
+						</tr>
+					<% }); %>
+				</tbody>
+			</table>
+		</div>
+	<% } %>
 </body>
 
 </html>

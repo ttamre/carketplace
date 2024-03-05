@@ -1,15 +1,16 @@
 /**
+ * Formatting utility functions
+ * 
  * Author: Tem Tamre
  * Contact: temtamre@gmail.com
  */
 
-
 /**
  * Get a properly formatted price tag given a price and currency
  * @param {number} price    given price
- * @param {string} currency currency of the given price
+ * @param {string} currency one of ["CAD", "USD", "GBP"]
  */
-export function formatPrice(price, currency) {
+function formatPrice(price, currency) {
     let currencyMap = {
         "CAD": "en-CA",
         "USD": "en-US",
@@ -20,9 +21,7 @@ export function formatPrice(price, currency) {
         currencyMap[currency],
         {style: 'currency', 'currency': currency});
 
-    return numberFormat.format(`$${price}`);
+    return numberFormat.format(price);
 }
 
-// string validation
-
-// string formatting
+module.exports = {formatPrice};
