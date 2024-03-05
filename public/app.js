@@ -15,27 +15,35 @@ const port = 5000;
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
+app.set('view engine', 'ejs');
 
 
 // Serve main webpage
 app.get('/', (req, res) => {
-    res.sendFile('index.html', {root: __dirname});
-});
-
-// Serve login page
-app.get('/login', (req, res) => {
-    res.sendFile('login.html', {root: __dirname});
+    console.log(req.ip);
+    console.log(req.method);
+    console.log(req.headers);
+    console.log(req.method);
+    res.render('index', {cars: []})
 });
 
 // Get user form data via POST request
 app.post('/', (req, res) => {
-    // TODO scrape kijiji autos
-    kijiji.searchTestData(req.body);
-
-    // TODO separate table creation into react frontend, then make POST request to get table data
-    res.sendFile('index.html', {root: __dirname});
+    let cars = kijiji.searchTestData(req.body);
+    // console.log(cars);
+    res.render('index', {cars: cars})
 })
 
+// Serve login page
+app.get('/login', (req, res) => {
+    res.render('login', {})
+});
+
+// Get user form data via POST request
+app.post('/login', (req, res) => {
+    console.log(1);
+    res.render('login', {});
+})
 
 
 app.listen(port, () => {

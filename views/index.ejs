@@ -30,11 +30,6 @@
 	<link rel="stylesheet" type="text/css" href="css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="css/skeleton.css">
 
-	<!-- JAVASCRIPT
-	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<!-- <script type="text/javascript" src="js/index.js"></script> -->
-
-
 </head>
 
 <body>
@@ -84,6 +79,7 @@
 							<option value="*" selected="selected">*</option>
 							<option value="RWD">RWD</option>
 							<option value="FWD">FWD</option>
+							<option value="4WD">4WD</option>
 							<option value="AWD">AWD</option>
 						</select>
 					</div>
@@ -100,8 +96,8 @@
 						<label for="formTransmission">Transmission</label>
 						<select name="transmission" id="formTransmission" class="u-full-width">
 							<option value="*" selected="selected">*</option>
-							<option value="manual">Manual</option>
-							<option value="auto">Automatic</option>
+							<option value="Manual">Manual</option>
+							<option value="Auto">Automatic</option>
 						</select>
 					</div>
 				</div>
@@ -115,39 +111,40 @@
 	<hr>
 
 	<!-- Table
-	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<div id="divResults" class="container" style="visibility: hidden">
-		<table id="tableResults" class="u-full-width tableResults">
-			<h3>results</h3>
-			<thead id="tableHead">
-				<tr>
-					<th>year</th>
-					<th>make</th>
-					<th>model</th>
-					<th>dt</th>
-					<th>trans</th>
-					<th>price</th>
-					<th></th>
-				</tr>
-			</thead>
-			<!-- <tbody>
-			  <tr>
-				<td>2014</td>
-				<td>Toyota</td>
-				<td>Camry</td>
-				<td>$8000</td>
-				<td><button href="">view</button></td>
-			  </tr>
-			  <tr>
-				<td>2001</td>
-				<td>BMW</td>
-				<td>330Ci</td>
-				<td>$6000</td>
-				<td><button href="">view</button></td>
-			  </tr>
-			</tbody> -->
-		</table>
-	</div>
+	––––––––––––––––––––––––––––––––––––––––––––––––––style="visibility: hidden" -->
+	<% if (cars.length > 0) { %>
+		<div id="divResults" class="container" >
+			<table id="tableResults" class="u-full-width tableResults">
+				<h3>results</h3>
+				<thead id="tableHead">
+					<tr>
+						<th>year</th>
+						<th>make</th>
+						<th>model</th>
+						<th>dt</th>
+						<th>trans</th>
+						<th>price</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% cars.forEach(function(car) { %>
+						<tr>
+							<td><%= car.year %></td>
+							<td><%= car.make %></td>
+							<td><%= car.model %></td>
+							<td><%= car.drivetrain %></td>
+							<td><%= car.transmission %></td>
+							<td><%= car.price %></td>
+							<td>
+								<a href="<%= car.link %>"target="_blank" rel="noopener noreferrer" class="button">view</a>
+							</td>
+						</tr>
+					<% }); %>
+				</tbody>
+			</table>
+		</div>
+	<% } %>
 </body>
 
 </html>

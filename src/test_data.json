@@ -39,8 +39,8 @@
         "year": 2017,
         "make": "Toyota",
         "model": "Camry",
-        "drivetrain": "Drivetrain",
-        "transmission": "FWD",
+        "drivetrain": "FWD",
+        "transmission": "Auto",
         "price": 17800,
         "link": "https://www.kijijiautos.ca/cars/toyota/camry/#vip=28923348"
     },
@@ -178,5 +178,121 @@
         "transmission": "Manual",
         "price": 724975,
         "link": "https://www.kijijiautos.ca/cars/porsche/911/#vip=30723459"
+    },
+    {
+        "year": 2015,
+        "make": "BMW",
+        "model": "M3",
+        "drivetrain": "RWD",
+        "transmission": "Manual",
+        "price": 56000,
+        "link": "https://www.kijijiautos.ca/cars/bmw/m3/used/#vip=31536441"
+    },
+    {
+        "year": 1989,
+        "make": "BMW",
+        "model": "525i",
+        "drivetrain": "RWD",
+        "transmission": "Manual",
+        "price": 4100,
+        "link": "https://www.kijijiautos.ca/cars/bmw/5-series/used/#vip=31425303"
+    },
+    {
+        "year": 1999,
+        "make": "BMW",
+        "model": "Z3",
+        "drivetrain": "RWD",
+        "transmission": "Manual",
+        "price": 14000,
+        "link": "https://www.kijijiautos.ca/cars/bmw/z3/used/#vip=28305188"
+    },
+    {
+        "year": 2001,
+        "make": "BMW",
+        "model": "M3",
+        "drivetrain": "RWD",
+        "transmission": "Manual",
+        "price": 35900,
+        "link": "https://www.kijijiautos.ca/cars/bmw/m3/used/#vip=30624424"
+    },
+    {
+        "year": 2015,
+        "make": "BMW",
+        "model": "M235i",
+        "drivetrain": "RWD",
+        "transmission": "Manual",
+        "price": 29907,
+        "link": "https://www.kijijiautos.ca/cars/bmw/m2/#vip=30667235"
+    },
+    {
+        "year": 1962,
+        "make": "Mercedes-Benz",
+        "model": "300 SL",
+        "drivetrain": "",
+        "transmission": "Manual",
+        "price": 0,
+        "link": "https://www.kijijiautos.ca/cars/mercedes-benz/used/#vip=30368327"
+    },
+    {
+        "year": 2018,
+        "make": "Mercedes-Benz",
+        "model": "AMG C63 S",
+        "drivetrain": "RWD",
+        "transmission": "Auto",
+        "price": 68000,
+        "link": "https://www.kijijiautos.ca/cars/mercedes-benz/c-class/#vip=28935282"
+    },
+    {
+        "year": 2009,
+        "make": "Infiniti",
+        "model": "G35",
+        "drivetrain": "RWD",
+        "transmission": "Manual",
+        "price": 20999,
+        "link": "https://www.kijijiautos.ca/cars/infiniti/g35/used/#vip=31473211"
+    },
+    {
+        "year": 2021,
+        "make": "Toyota",
+        "model": "Tacoma",
+        "drivetrain": "4WD",
+        "transmission": "Auto",
+        "price": 55000,
+        "link": "https://www.kijijiautos.ca/cars/toyota/tacoma/#vip=28888055"
+    },
+    {
+        "year": 2023,
+        "make": "Genesis",
+        "model": "G90",
+        "drivetrain": "AWD",
+        "transmission": "Auto",
+        "price": 115000,
+        "link": "https://www.kijijiautos.ca/cars/genesis/g90/#vip=28581854"
+    },
+    {
+        "year": 2023,
+        "make": "Jeep",
+        "model": "Grand Cherokee",
+        "drivetrain": "4WD",
+        "transmission": "Auto",
+        "price": 67180,
+        "link": "https://www.kijijiautos.ca/cars/jeep/grand-cherokee/#vip=28581855"
+    }, {
+        "year": 2018,
+        "make": "Jeep",
+        "model": "Wrangler",
+        "drivetrain": "4WD",
+        "transmission": "Auto",
+        "price": 47998,
+        "link": "https://www.kijijiautos.ca/cars/jeep/wrangler/used/#vip=26074419"
+    },
+    {
+        "year": 2021,
+        "make": "GMC",
+        "model": "Sierra 3500HD SLT",
+        "drivetrain": "4WD",
+        "transmission": "Auto",
+        "price": 99900,
+        "link": "https://www.kijijiautos.ca/cars/gmc/sierra-3500/used/#vip=29867693"
     }
 ]
