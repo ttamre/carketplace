@@ -5,13 +5,12 @@
  * Contact: temtamre@gmail.com
  */
 
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const kijiji = require('../src/kijiji')
 
 const app = express();
-const port = 5000;
-
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
@@ -46,6 +45,6 @@ app.post('/login', (req, res) => {
 })
 
 
-app.listen(port, () => {
-    console.info(`Now listening on port ${port}`);
+app.listen(process.env.PORT, () => {
+    console.info(`Now listening on port ${process.env.PORT}`);
 });
