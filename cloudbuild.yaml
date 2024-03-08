@@ -29,5 +29,5 @@ artifacts:
       packagePath: "."
 logsBucket: "gs://ivory-strategy-416312.appspot.com"
 options:
-  logging: CLOUD_LOGGING_ONLY
+  logging: GCS_ONLY
   # [END cloudbuild_npm_node]
