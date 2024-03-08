@@ -7,8 +7,6 @@
     <img src="https://img.shields.io/badge/license-GPL%20v3-red" />
 </div>
 
-
-
 <!-- DESCRIPTION -->
 <h2 style="font-family:monospace">Description</h2>
 <p style="font-family:monospace">Used vehicle website, built with node, express, and ejs. Hosted with Google App Engine</p>
@@ -33,8 +31,8 @@
 <h2 style="font-family:monospace">Usage</h2>
 
 `npm start`
-<p style="font-family:monospace">see <b>package.json</b> for dev/test commands</p>
 
+<p style="font-family:monospace">see <b>package.json</b> for dev/test commands</p>
 
 <!-- LICENSE -->
 <h2 style="font-family:monospace">License</h2>
