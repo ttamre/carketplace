@@ -19,10 +19,15 @@ steps:
     entrypoint: npm
     args: ["install"]
   # Start node
-  - name: node
-    entrypoint: npm
-    args: ["start"]
+  # - name: node
+  #   entrypoint: npm
+  #   args: ["start"]
 
+artifacts:
+  npmPackages:
+    - repository: "https://{LOCATION}-npm.pkg.dev/{PROJECT_ID}/{REPOSITORY_NAME}"
+      packagePath: "."
+logsBucket: "gs://ivory-strategy-416312.appspot.com"
 options:
   logging: CLOUD_LOGGING_ONLY
   # [END cloudbuild_npm_node]
