@@ -23,7 +23,7 @@ steps:
   # Start node
   - name: node
     entrypoint: npm
-    args: ["start"]
+    args: ["run", "start"]
 
 artifacts:
   npmPackages:
