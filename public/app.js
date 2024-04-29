@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
 // Get user form data via POST request
 app.post("/", (req, res) => {
   let cars = kijiji.searchTestData(req.body);
+  console.log("cars:", cars)
   res.render("index", { cars: cars });
 });
 
@@ -38,5 +39,5 @@ app.post("/login", (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-  console.info(`Now listening on port ${process.env.PORT}`);
+  console.info(`Listening at http://localhost:${process.env.PORT}...`);
 });
