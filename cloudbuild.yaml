@@ -21,20 +21,15 @@ steps:
     args: ["install"]
 
   # Start node
-  # - name: node
-  #   entrypoint: npm
-  #   args: ["start"]
+  - name: node
+    entrypoint: npm
+    args: ["start"]
 
 artifacts:
   npmPackages:
-<<<<<<< HEAD
-    - repository: "https://{LOCATION}-npm.pkg.dev/{PROJECT_ID}/{REPOSITORY_NAME}"
-      packagePath: "."
-=======
     - repository: "https://us-npm.pkg.dev/ivory-strategy-416312/us.gcr.io"
       packagePath: "."
 
->>>>>>> dev
 logsBucket: "gs://ivory-strategy-416312.appspot.com"
 options:
   logging: GCS_ONLY
