@@ -14,15 +14,23 @@
 
 # [START cloudbuild_npm_node]
 steps:
+
   # Install dependencies
   - name: node
     entrypoint: npm
     args: ["install"]
+
   # Start node
   - name: node
     entrypoint: npm
     args: ["start"]
 
+artifacts:
+  npmPackages:
+    - repository: "https://us-npm.pkg.dev/ivory-strategy-416312/us.gcr.io"
+      packagePath: "."
+
+logsBucket: "gs://ivory-strategy-416312.appspot.com"
 options:
   logging: CLOUD_LOGGING_ONLY
   # [END cloudbuild_npm_node]
