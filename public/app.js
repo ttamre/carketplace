@@ -38,5 +38,5 @@ app.post("/login", (req, res) => {
 });
 
 app.listen("80", () => {
-  console.info(`Listening at http://localhost:${process.env.PORT}...`);
+  console.info(`Listening at http://localhost...`);
 });

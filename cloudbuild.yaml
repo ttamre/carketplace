@@ -21,9 +21,9 @@ steps:
     args: ["install"]
 
   # Start node
-  - name: node
-    entrypoint: npm
-    args: ["run", "start"]
+  # - name: node
+  #   entrypoint: npm
+  #   args: ["run", "start"]
 
 artifacts:
   npmPackages:
