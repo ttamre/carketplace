@@ -1,11 +1,14 @@
 CREATE TABLE cars (
-    link TEXT PRIMARY KEY,
+    link TEXT PRIMARY KEY NOT NULL,
     year INTEGER,
     make TEXT,
     model TEXT,
     drivetrain TEXT,
     transmission TEXT,
-    price INTEGER
+    price NUMERIC
+    
+    CHECK (drivetrain in ('RWD', 'FWD', 'AWD', '4WD')),
+    CHECK (transmission in ('Auto', 'Manual'))
 );
 
 INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALUES (
@@ -63,7 +66,7 @@ INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALU
     'https://www.kijijiautos.ca/cars/jaguar/used/#vip=31325051', 1984, 'Jaguar', 'XJS', 'RWD', 'Auto', 7400
 );
 INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALUES (
-    'https://www.kijijiautos.ca/cars/lamborghini/urus/#vip=30816076', 2022, 'Lamborghini', 'Urus', 'Auto', 'AWD', 334800
+    'https://www.kijijiautos.ca/cars/lamborghini/urus/#vip=30816076', 2022, 'Lamborghini', 'Urus', 'AWD', 'Auto', 334800
 );
 INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALUES (
     'https://www.kijijiautos.ca/cars/porsche/911/#vip=30723459', 2023, 'Porsche', '811', 'RWD', 'Manual', 724975
@@ -82,9 +85,6 @@ INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALU
 );
 INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALUES (
     'https://www.kijijiautos.ca/cars/bmw/m2/#vip=30667235', 2015, 'BMW', 'M235i', 'RWD', 'Manual', 29907
-);
-INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALUES (
-    'https://www.kijijiautos.ca/cars/mercedes-benz/used/#vip=30368327', 1962, 'Mercedes-Benz', '300 SL', 'RWD', 'Manual', 0
 );
 INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALUES (
     'https://www.kijijiautos.ca/cars/mercedes-benz/c-class/#vip=28935282', 2018, 'Mercedes-Benz', 'AMG C63 S', 'RWD', 'Auto', 68000
