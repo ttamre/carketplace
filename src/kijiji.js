@@ -5,8 +5,8 @@
  * Contact: temtamre@gmail.com
  */
 
-const formatUtils = require('./format');
-const sqlite3 = require('sqlite3').verbose();
+const Database = require('better-sqlite3');
+const db_path = 'data/database.db';
 
 /**
  * Searches through test database and filters based on form data
@@ -14,7 +14,7 @@ const sqlite3 = require('sqlite3').verbose();
  * @param   {req.body}  formData 
  * @returns {Array}     filteredData    array of car objects
  */
-function searchTestDatabase(formData) {
+export function searchTestDatabase(formData) {
     // TODO validate + sanitize formData before using in database query
 
     // Build SQL command based on form data
@@ -49,7 +49,7 @@ function searchTestDatabase(formData) {
         params.push(formData["model"])
     }
     if (formData["price"]) {
-        query += ' AND price =< ?';
+        query += ' AND price <= ?';
         params.push(formData["price"])
     }
     if (formData["drivetrain"] && formData["drivetrain"] !== "*") {
@@ -60,104 +60,37 @@ function searchTestDatabase(formData) {
         query += ' AND transmission = ?';
         params.push(formData["transmission"])
     }
+    
+    const db = new Database(db_path);
+    const preparedQuery = db.prepare(query);
+    const selectTransaction = db.transaction((params) => {
+        return preparedQuery.all(params);
+    }); 
+    
+    let results = selectTransaction(params);
 
-
-    // Query data from the database
-    // let data = []
-    const db = new sqlite3.Database('data/database.db', sqlite3.OPEN_READ, (err) => {
-        if (err) {
-            console.error(err.message);
-        }});
-
-    executeQuery(db, query, params)
-        .then((rows) => {
-            return rows
-        })
-        .catch((err) => {
-            console.error(err)
-        })
-        .finally(() => {
-            db.close((err) => {
-                if (err) {
-                    console.error(err.message)
-                }
-            })
-        })
-}
-
-function executeQuery(db, query, params) {
-    return new Promise((resolve, reject) => {
-        db.all(query, params, (err, rows) => {
-            if (err) {
-                reject(err);
-            }
-            resolve(rows);
-        })
-    })
+    results.forEach((car) => {
+        if (typeof car["price"] == 'number') {
+            car["price"] = formatPrice(car["price"], "CAD");
+        }
+    });
 }
 
 /**
- * Searches through test json data and filters based on form data
- * 
- * @param   {req.body}  formData 
- * @returns {Array}     filteredData    array of car objects
+ * Get a properly formatted price tag given a price and currency
+ * @param {number} price    given price
+ * @param {string} currency one of ["CAD", "USD", "GBP"]
  */
-function searchTestData(formData) {
-    let data = require('../data/test_data.json');
-    let filteredData = data;
+function formatPrice(price, currency) {
+    let currencyMap = {
+        "CAD": "en-CA",
+        "USD": "en-US",
+        "GBP": "en-GB"
+    };
 
-    // Filter year
-    if (formData["year"]) {
-        // First, determine if an operator is present (=, !, <, <=, >, >=)
-        let operator = null;
-        if (isNaN(formData["year"][0])) {
-            operator = formData["year"][0];
-            formData["year"] = +(formData["year"].substring(1))
-        }
+    let numberFormat = new Intl.NumberFormat(
+        currencyMap[currency],
+        {style: 'currency', 'currency': currency});
 
-        // Then, filter data based on operator
-        if (!operator || operator === "=") {
-            filteredData = filteredData.filter((car) => car["year"] == formData["year"]);
-        } else if (operator === "<") {
-            filteredData = filteredData.filter((car) => car["year"] < formData["year"]);
-        } else if (operator === ">") {
-            filteredData = filteredData.filter((car) => car["year"] > formData["year"]);
-        } else if (operator === "!") {
-            filteredData = filteredData.filter((car) => car["year"] != formData["year"]);
-        } else if (operator === "-") {
-            filteredData = filteredData.filter((car) => car["year"] <= formData["year"]);
-        } else if (operator === "+") {
-            filteredData = filteredData.filter((car) => car["year"] >= formData["year"]);
-        } else {
-            console.error("received invalid year from form data");
-        }
-    }
-
-    // Filter make, mode, price, drivetrain, and transmission
-    if (formData["make"]) {
-        filteredData = filteredData.filter((car) => car["make"] === formData["make"]);
-    }
-    if (formData["model"]) {
-        filteredData = filteredData.filter((car) => car["model"] === formData["model"]);
-    }
-    if (formData["price"]) {
-        filteredData = filteredData.filter((car) => car["price"] <= +formData["price"]);
-    }
-    if (formData["drivetrain"] && formData["drivetrain"] !== "*") {
-        filteredData = filteredData.filter((car) => car["drivetrain"] === formData["drivetrain"]);
-    }
-    if (formData["transmission"] && formData["transmission"] !== "*") {
-        filteredData = filteredData.filter((car) => car["transmission"] === formData["transmission"]);
-    }
-
-    // Format price
-    filteredData.forEach((car) => {
-        if (typeof car["price"] == 'number') {
-            car["price"] = formatUtils.formatPrice(car["price"], "CAD");
-        }
-    });
-
-    return filteredData;
+    return numberFormat.format(price);
 }
-
-module.exports = {searchTestData, searchTestDatabase};

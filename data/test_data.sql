@@ -90,20 +90,26 @@ INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALU
     'https://www.kijijiautos.ca/cars/mercedes-benz/c-class/#vip=28935282', 2018, 'Mercedes-Benz', 'AMG C63 S', 'RWD', 'Auto', 68000
 );
 INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALUES (
-    'https://www.kijijiautos.ca/cars/infiniti/g35/used/#vip=31473211', 2009, 'Infiniti', 'G35', 'RWD', 'Manual', 20999
-);
-INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALUES (
     'https://www.kijijiautos.ca/cars/toyota/tacoma/#vip=28888055', 2021, 'Toyota', 'Tacoma', '4WD', 'Auto', 55000
 );
 INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALUES (
-    'https://www.kijijiautos.ca/cars/genesis/g90/#vip=28581854', 2023, 'Genesis', 'G90', 'AWD', 'Auto', 115000
+    'https://www.kijijiautos.ca/cars/genesis/g90/#vip=28581854', 2023, 'Genesis', 'G90', 'AWD', 'Auto', 99997
 );
 INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALUES (
-    'https://www.kijijiautos.ca/cars/jeep/grand-cherokee/#vip=28581855', 2023, 'Jeep', 'Grand Cherokee', '4WD', 'Auto', 67180
+    'https://www.kijijiautos.ca/cars/jeep/wrangler/used/#vip=26074419', 2018, 'Jeep', 'Wrangler', '4WD', 'Auto', 39781
 );
 INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALUES (
-    'https://www.kijijiautos.ca/cars/jeep/wrangler/used/#vip=26074419', 2018, 'Jeep', 'Wrangler', '4WD', 'Auto', 47998
+    'https://www.kijijiautos.ca/cars/hyundai/tucson/used/#vip=31938846', 2013, 'Hyundai', 'Tuscon', 'AWD', 'Auto', 39781
 );
 INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALUES (
-    'https://www.kijijiautos.ca/cars/gmc/sierra-3500/used/#vip=29867693', 2021, 'GMC', 'Sierra 3500HD SLT', '4WD', 'Auto', 99900
+    'https://www.kijijiautos.ca/cars/lexus/rx/#vip=28980755', 2003, 'Lexus', 'RX300', 'AWD', 'Auto', 8500
+);
+INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALUES (
+    'https://www.kijijiautos.ca/cars/nissan/versa/used/#vip=28880591', 2010, 'Nissan', 'Versa', 'FWD', 'Auto', 4000
+);
+INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALUES (
+    'https://www.kijijiautos.ca/cars/nissan/pathfinder/used/#vip=29058620', 2014, 'Nissan', 'Pathfinder', NULL, 'Auto', 7000
+);
+INSERT INTO cars (link, year, make, model, drivetrain, transmission, price) VALUES (
+    'https://www.kijijiautos.ca/cars/kia/sorento/used/#vip=28967126', 2015, 'Kia', 'Sorento', 'FWD', 'Auto', 12700
 );
