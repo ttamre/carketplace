@@ -15,26 +15,17 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.set("view engine", "ejs")
 
-// Serve main webpage
+// GET main webpage
 app.get("/", (req, res) => {
   res.render("index", { cars: [] })
 })
 
-// Get user form data via POST request
+// POST search results based on request form data
 app.post("/", (req, res) => {
   let cars = kijiji.searchTestDatabase(req.body)
   res.render("index", { cars: cars })
 })
 
-// Serve login page
-app.get("/login", (req, res) => {
-  res.render("login", {})
-})
-
-// Get user form data via POST request
-app.post("/login", (req, res) => {
-  res.render("login", {})
-})
 
 app.listen('8080', () => {
   console.info(`Listening at http://localhost:8080...`)
