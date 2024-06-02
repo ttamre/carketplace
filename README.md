@@ -10,7 +10,7 @@
 
 <!-- DESCRIPTION -->
 <h2 style="font-family:monospace">Description</h2>
-<p style="font-family:monospace">Used vehicle website, built with typescript, node, express, and ejs. Hosted with Google App Engine</p>
+<p style="font-family:monospace">Used vehicle website, built with typescript, node, express, and ejs. Hosted with Google App Engine.</p>
 <a style="font-family:monospace" href="http://www.carketplace.ca" target="_blank" rel="noopener noreferrer">Link</a>
 
 <!-- INSTALLATION -->
@@ -31,9 +31,19 @@
 <!-- USAGE -->
 <h2 style="font-family:monospace">Usage</h2>
 
-`npm run build # Run once to compile typescript files`
+```bash
+# Run this once to compile typescript
+npm run build
 
-`npm start`
+# Run this to serve the app
+npm start
+
+
+
+# gcloud commands for building/deployment
+gcloud build submit     # build in cloud build
+gcloud app deploy       # deploy to app engine
+```
 
 <p style="font-family:monospace">see <b>package.json</b> for dev/test commands</p>
 
