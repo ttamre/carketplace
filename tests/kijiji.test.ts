@@ -5,7 +5,7 @@
  * Contact: temtamre@gmail.com
  */
 
-import * as kijiji from '../public/kijiji';
+import * as kijiji from '../public/kijiji'
 
 describe('kijiji.ts', () => {
 
@@ -15,89 +15,93 @@ describe('kijiji.ts', () => {
         
         it('year', () => {
             let formData:object = {year: "1971"}
-            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData);
+            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData)
             
             // First, check if we get results
-            expect(results).not.toHaveLength(0);
+            expect(results).not.toHaveLength(0)
 
             // Then, check year to ensure proper filtering
             results.forEach((car) =>{
                 expect(car["year"]).toBe(Number(formData["year"]))
             })
-        });
+        })
 
         it('make', () => {
             let formData:object = {make: "BMW"}
-            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData);
+            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData)
             
             // First, check if we get results
-            expect(results).not.toHaveLength(0);
+            expect(results).not.toHaveLength(0)
 
             // Then, check make to ensure proper filtering
             results.forEach((car) =>{
                 expect(car["make"]).toBe(formData["make"])
             })
-        });
+        })
 
         it('model', () => {
             let formData:object = {model: "190e"}
-            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData);
+            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData)
             
-            expect(results).not.toHaveLength(0);
+            expect(results).not.toHaveLength(0)
 
             // Then, check model to ensure proper filtering
             results.forEach((car) =>{
                 expect(car["model"]).toBe(formData["model"])
             })
-        });
+        })
 
         it('price', () => {
             let formData:object = {price: "10000"}
-            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData);
+            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData)
             
             // First, check if we get results
-            expect(results).not.toHaveLength(0);
+            expect(results).not.toHaveLength(0)
 
             // Then, check year to ensure proper filtering
-            // TODO compare int and formatted string prices (ex. 100 < $100.01)
-            // results.forEach((car) =>{
-            //     expect(car["price"]).toBeLessThanOrEqual(Number(formData["price"]))
-            // })
-        });
+            results.forEach((car) =>{
+
+                if (typeof car["price"] === "string"){
+                    car["price"] = Number(car["price"].replace("$", "").replace(",", ""))
+                }
+
+                expect(car["price"]).toBeLessThanOrEqual(Number(formData["price"]))
+            })
+        })
 
         it('drivetrain', () => {
             let formData:object = {drivetrain: "RWD"}
-            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData);
+            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData)
             
             // First, check if we get results
-            expect(results).not.toHaveLength(0);
+            expect(results).not.toHaveLength(0)
 
             // Then, check drivetrain to ensure proper filtering
             results.forEach((car) =>{
                 expect(car["drivetrain"]).toBe(formData["drivetrain"])
             })
-        });
+        })
 
         it('transmission', () => {
             let formData:object = {transmission: "Manual"}
-            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData);
+            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData)
             
             // First, check if we get results
-            expect(results).not.toHaveLength(0);
+            expect(results).not.toHaveLength(0)
 
             // Then, check transmission to ensure proper filtering
             results.forEach((car) =>{
                 expect(car["transmission"]).toBe(formData["transmission"])
             })
-        });
+        })
 
 
         /* Test cases for multiple form fields */
 
         it('empty form data', () => {
             let formData:object = {}
-            expect(kijiji.searchTestDatabase(formData)).not.toHaveLength(0);
-        });
+            expect(kijiji.searchTestDatabase(formData)).not.toHaveLength(0)
+        })
 
         it('full form data 1', () => {
             let formData:object = {
@@ -109,10 +113,10 @@ describe('kijiji.ts', () => {
                 transmission: "Auto"
             }
 
-            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData);
+            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData)
 
             // First, check if we get results
-            expect(results).not.toHaveLength(0);
+            expect(results).not.toHaveLength(0)
 
             // Then, check individual fields to ensure proper filtering
             results.forEach((car) =>{
@@ -124,7 +128,7 @@ describe('kijiji.ts', () => {
                 expect(car["transmission"]).toBe(formData["transmission"])
             })
             
-        });
+        })
 
         it('full form data 2', () => {
             let formData:object = {
@@ -136,10 +140,10 @@ describe('kijiji.ts', () => {
                 transmission: "Auto"
             }
 
-            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData);
+            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData)
 
             // First, check if we get results
-            expect(results).not.toHaveLength(0);
+            expect(results).not.toHaveLength(0)
 
             // Then, check individual fields to ensure proper filtering
             results.forEach((car) =>{
@@ -150,7 +154,7 @@ describe('kijiji.ts', () => {
                 expect(car["drivetrain"]).toBe(formData["drivetrain"])
                 expect(car["transmission"]).toBe(formData["transmission"])
             })
-        });
+        })
 
         it('full form data 3', () => {
             let formData:object = {
@@ -162,10 +166,10 @@ describe('kijiji.ts', () => {
                 transmission: "Manual"
             }
 
-            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData);
+            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData)
 
             // First, check if we get results
-            expect(results).not.toHaveLength(0);
+            expect(results).not.toHaveLength(0)
 
             // Then, check individual fields to ensure proper filtering
             results.forEach((car) =>{
@@ -176,154 +180,154 @@ describe('kijiji.ts', () => {
                 expect(car["drivetrain"]).toBe(formData["drivetrain"])
                 expect(car["transmission"]).toBe(formData["transmission"])
             })
-        });
+        })
 
 
         /* Test cases for operators */
 
         it('>year', () => {
             let formData:object = {year: ">2000"}
-            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData);
+            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData)
             
             // First, check if we get results
-            expect(results).not.toHaveLength(0);
+            expect(results).not.toHaveLength(0)
 
             // Then, check year to ensure proper filtering
             results.forEach((car) =>{
                 expect(car["year"]).toBeGreaterThan(Number(formData["year"].slice(1)))
             })
-        });
+        })
 
         it('<year', () => {
             let formData:object = {year: "<2000"}
-            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData);
+            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData)
             
             // First, check if we get results
-            expect(results).not.toHaveLength(0);
+            expect(results).not.toHaveLength(0)
 
             // Then, check year to ensure proper filtering
             results.forEach((car) =>{
                 expect(car["year"]).toBeLessThan(Number(formData["year"].slice(1)))
             })
-        });
+        })
 
         it('+year', () => {
             let formData:object = {year: "+2000"}
-            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData);
+            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData)
             
             // First, check if we get results
-            expect(results).not.toHaveLength(0);
+            expect(results).not.toHaveLength(0)
 
             // Then, check year to ensure proper filtering
             results.forEach((car) =>{
                 expect(car["year"]).toBeGreaterThanOrEqual(Number(formData["year"].slice(1)))
             })
-        });
+        })
 
         it('-year', () => {
             let formData:object = {year: "-2000"}
-            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData);
+            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData)
             
             // First, check if we get results
-            expect(results).not.toHaveLength(0);
+            expect(results).not.toHaveLength(0)
 
             // Then, check year to ensure proper filtering
             results.forEach((car) =>{
                 expect(car["year"]).toBeLessThanOrEqual(Number(formData["year"].slice(1)))
             })
-        });
+        })
 
         it('=year', () => {
             let formData:object = {year: "=2000"}
-            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData);
+            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData)
             
             // First, check if we get results
-            expect(results).not.toHaveLength(0);
+            expect(results).not.toHaveLength(0)
 
             // Then, check year to ensure proper filtering
             results.forEach((car) =>{
                 expect(car["year"]).toBe(Number(formData["year"].slice(1)))
             })
-        });
+        })
 
         it('!year', () => {
             let formData:object = {year: "!2000"}
-            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData);
+            let results:Record<string, string|number>[] = kijiji.searchTestDatabase(formData)
             
             // First, check if we get results
-            expect(results).not.toHaveLength(0);
+            expect(results).not.toHaveLength(0)
 
             // Then, check year to ensure proper filtering
             results.forEach((car) =>{
                 expect(car["year"]).not.toBe(Number(formData["year"].slice(1)))
             })
-        });
+        })
 
-    });
+    })
 
  
 
     describe('testing kijiji.validateFormData()', () => {
         it('valid year', () => {
             let formData:object = {year: "1989"}
-            let error:Error|undefined = kijiji.validateFormData(formData);
+            let error:Error|undefined = kijiji.validateFormData(formData)
             
             // Year is valid, so error should be undefined
-            expect(error).toBeUndefined();
-        });
+            expect(error).toBeUndefined()
+        })
 
         it('invalid year', () => {
             let formData:object = {year: "3000 BC"}
-            let error:Error|undefined = kijiji.validateFormData(formData);
+            let error:Error|undefined = kijiji.validateFormData(formData)
             
             // Year is invalid, so error should be Error("Invalid year")
-            expect(error).toBeInstanceOf(Error);
-            expect(error?.message).toBe("Invalid year");
-        });
+            expect(error).toBeInstanceOf(Error)
+            expect(error?.message).toBe("Invalid year")
+        })
 
         it('valid price', () => {
             let formData:object = {year: "10000"}
-            let error:Error|undefined = kijiji.validateFormData(formData);
+            let error:Error|undefined = kijiji.validateFormData(formData)
             
             // Year is valid, so error should be undefined
-            expect(error).toBeUndefined();
-        });
+            expect(error).toBeUndefined()
+        })
 
         it('invalid price', () => {
             let formData:object = {price: "something cheap"}
-            let error:Error|undefined = kijiji.validateFormData(formData);
+            let error:Error|undefined = kijiji.validateFormData(formData)
             
             // Price is invalid, so error should be Error("Invalid year")
-            expect(error).toBeInstanceOf(Error);
-            expect(error?.message).toBe("Invalid price");
-        });
+            expect(error).toBeInstanceOf(Error)
+            expect(error?.message).toBe("Invalid price")
+        })
         
-    });
+    })
 
     describe('testing kijiji.formatPrice()', () => {
         it('CAD', () => {
-            let price:number = 10000;
-            let currency:string = "CAD";
-            let formattedPrice:string = kijiji.formatPrice(price, currency);
+            let price:number = 10000
+            let currency:string = "CAD"
+            let formattedPrice:string = kijiji.formatPrice(price, currency)
 
-            expect(formattedPrice).toBe("$10,000.00");
-        });
+            expect(formattedPrice).toBe("$10,000.00")
+        })
 
         it('USD', () => {
-            let price:number = 10000;
-            let currency:string = "USD";
-            let formattedPrice:string = kijiji.formatPrice(price, currency);
+            let price:number = 10000
+            let currency:string = "USD"
+            let formattedPrice:string = kijiji.formatPrice(price, currency)
 
-            expect(formattedPrice).toBe("$10,000.00");
-        });
+            expect(formattedPrice).toBe("$10,000.00")
+        })
 
         it('GBP', () => {
-            let price:number = 10000;
-            let currency:string = "GBP";
-            let formattedPrice:string = kijiji.formatPrice(price, currency);
+            let price:number = 10000
+            let currency:string = "GBP"
+            let formattedPrice:string = kijiji.formatPrice(price, currency)
 
-            expect(formattedPrice).toBe("£10,000.00");
-        });
+            expect(formattedPrice).toBe("£10,000.00")
+        })
         
-    });
-});
+    })
+})

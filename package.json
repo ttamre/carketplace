@@ -2,10 +2,9 @@
   "name": "carketplace",
   "version": "1.1.0",
   "description": "used vehicle website",
-  "main": "app.js",
   "scripts": {
-    "dev": "nodemon public/app.ts",
-    "test": "npx jest",
+    "dev": "nodemon public/server.ts",
+    "test": "npx jest --detectOpenHandles --forceExit",
     "build": "npx tsc",
     "gcp-build": "npm run build",
     "start": "node out/app.js"
@@ -25,7 +24,8 @@
     "body-parser": "^1.20.2",
     "ejs": "^3.1.9",
     "express": "^4.18.3",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "supertest": "^7.0.0"
   },
   "devDependencies": {
     "@types/better-sqlite3": "~7.6.10",

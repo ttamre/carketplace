@@ -1,5 +1,5 @@
 /**
- * Server entrypoint
+ * Express routes
  *
  * Author: Tem Tamre
  * Contact: temtamre@gmail.com
@@ -26,7 +26,4 @@ app.post("/", (req, res) => {
   res.render("index", { cars: cars })
 })
 
-
-app.listen('8080', () => {
-  console.info(`Listening at http://localhost:8080...`)
-})
+export default app
