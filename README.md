@@ -41,7 +41,7 @@ npm start
 
 
 # gcloud commands for building/deployment
-gcloud build submit     # build in cloud build
+gcloud builds submit     # build in cloud build (also triggers on push)
 gcloud app deploy       # deploy to app engine
 ```
 
