@@ -5,8 +5,9 @@
  * Contact: temtamre@gmail.com
  */
 
-const Database = require('better-sqlite3')
-const db_path = 'data/database.db'
+import BetterSqlite3, { Database, Statement } from "better-sqlite3"
+
+const DB_PATH:string = 'data/database.db'
 
 /**
  * Searches through test database and filters based on form data
@@ -14,9 +15,9 @@ const db_path = 'data/database.db'
  * @param   {req.body}  formData 
  * @returns {Array}     filteredData    array of car objects
  */
-function searchTestDatabase(formData) {
+function searchTestDatabase(formData:object): Record<string, string|number>[]{
     // Form data validation
-    let formDataError = validateFormData(formData)
+    let formDataError:Error|undefined = validateFormData(formData)
     if (formDataError) {
         console.error(formDataError)
         return []
@@ -67,15 +68,15 @@ function searchTestDatabase(formData) {
         params.push(formData["transmission"])
     }
     
-    const db = new Database(db_path)
-    const preparedQuery = db.prepare(query)
-    const selectTransaction = db.transaction((params) => {
+    const db:Database = new BetterSqlite3(DB_PATH)
+    const preparedQuery:Statement = db.prepare(query)
+    const selectTransaction:Function = db.transaction((params) => {
         return preparedQuery.all(params)
     }) 
     
-    let results = selectTransaction(params)
+    let results:Record<string, string|number>[] = selectTransaction(params)
 
-    results.forEach((car) => {
+    results.forEach((car:Record<string, string|number>) => {
         if (typeof car["price"] == 'number') {
             car["price"] = formatPrice(car["price"], "CAD")
         }
@@ -89,7 +90,7 @@ function searchTestDatabase(formData) {
 * @param    {req.body}  formData    form data from POST request
 * @returns  {Error/null}            error if invalid data, null otherwise
 */
-function validateFormData(formData) {
+function validateFormData(formData:object): Error|undefined {
     // year (ignoring first character due to operator)
     if (formData["year"].substring(1) && isNaN(formData["year"].substring(1))) {
         return Error("Invalid year")
@@ -112,7 +113,7 @@ function validateFormData(formData) {
  * @param {number} price    given price
  * @param {string} currency one of ["CAD", "USD", "GBP"]
  */
-function formatPrice(price, currency) {
+function formatPrice(price:number, currency:string): string {
     let currencyMap:Record<string, string> = {
         "CAD": "en-CA",
         "USD": "en-US",

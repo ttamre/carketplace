@@ -7,20 +7,19 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon out/app.js",
     "build": "npx tsc",
-    "start": "node out/app.js",
-    "prestart": "npm run build",
-    "gcp-build": "npm run build"
+    "gcp-build": "npm run build",
+    "start": "node out/app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ttamre/carketplace.git"
   },
   "author": "Tem Tamre",
-  "license": "ISC",
+  "license": "GNU",
   "bugs": {
     "url": "https://github.com/ttamre/carketplace/issues"
   },
-  "homepage": "https://github.com/ttamre/carketplace#readme",
+  "homepage": "https://www.carketplace.ca",
   "dependencies": {
     "better-sqlite3": "^9.6.0",
     "body-parser": "^1.20.2",
