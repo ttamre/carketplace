@@ -15,5 +15,10 @@
 .env
 *.pdf
 
+
+# Typescript
+out/
+tsconfig.tsbuildinfo
+
 # Node.js dependencies:
 node_modules/

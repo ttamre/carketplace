@@ -10,7 +10,7 @@
 
 <!-- DESCRIPTION -->
 <h2 style="font-family:monospace">Description</h2>
-<p style="font-family:monospace">Used vehicle website, built with node, express, and ejs. Hosted with Google App Engine</p>
+<p style="font-family:monospace">Used vehicle website, built with typescript, node, express, and ejs. Hosted with Google App Engine</p>
 <a style="font-family:monospace" href="http://www.carketplace.ca" target="_blank" rel="noopener noreferrer">Link</a>
 
 <!-- INSTALLATION -->

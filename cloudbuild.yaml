@@ -13,6 +13,7 @@
 # limitations under the License.
 
 # [START cloudbuild_npm_node]
+
 steps:
 
   # Install dependencies
@@ -20,17 +21,18 @@ steps:
     entrypoint: npm
     args: ["install"]
 
-  # Start node
+  # Complile typescript
   - name: node
     entrypoint: npm
-    args: ["start"]
+    args: ["run", "build"]
 
 artifacts:
   npmPackages:
-    - repository: "https://us-npm.pkg.dev/ivory-strategy-416312/us.gcr.io"
+    - repository: "https://us-npm.pkg.dev/us.gcr.io/ivory-strategy-416312"
       packagePath: "."
 
 logsBucket: "gs://ivory-strategy-416312.appspot.com"
 options:
-  logging: CLOUD_LOGGING_ONLY
-  # [END cloudbuild_npm_node]
+  logging: LOGGING_UNSPECIFIED
+  
+# [END cloudbuild_npm_node]
