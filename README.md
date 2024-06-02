@@ -1,10 +1,11 @@
 <h1 style="font-family:monospace">_CARKETPLACE</h1>
 <div style="padding-bottom:20px">
+    <img src="https://img.shields.io/badge/typescript-5.4.5-blue" />
     <img src="https://img.shields.io/badge/node-21.6.1-green" />
     <img src="https://img.shields.io/badge/express-4.18.3-white" />
-    <img src="https://img.shields.io/badge/ejs-4.3.1-orange" />
-    <img src="https://img.shields.io/badge/gcloud-host-blue" />
-    <img src="https://img.shields.io/badge/license-GPL%20v3-red" />
+    <img src="https://img.shields.io/badge/ejs-4.3.1-red" />
+    <img src="https://img.shields.io/badge/gcloud-host-grey" />
+    <img src="https://img.shields.io/badge/license-GPL%20v3-orange" />
 </div>
 
 <!-- DESCRIPTION -->
@@ -29,6 +30,8 @@
 
 <!-- USAGE -->
 <h2 style="font-family:monospace">Usage</h2>
+
+`npm run build # Run once to compile typescript files`
 
 `npm start`
 
