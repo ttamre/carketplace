@@ -90,6 +90,7 @@ function searchTestDatabase(formData:object): Record<string, string|number>[]{
 
 /**
 * Validates form data to prevent SQL injection and XSS attacks
+* Some validation is done in the query library, but this is an extra layer of security
 * @param    {req.body}  formData    form data from POST request
 * @returns  {Error/null}            error if invalid data, null otherwise
 */
@@ -99,16 +100,10 @@ function validateFormData(formData:object): Error|undefined {
         return Error("Invalid year")
     }
 
-    // TODO make (XSS + SQL injection) - dont sanitize, just reject if invalid
-
-
-    // TODO model (XSS + SQL injection) - dont sanitize, just reject if invalid
-
     // price (is number type, but nice to have validation for extra safety)
     if (formData["price"] && isNaN(formData["price"])) {
         return Error("Invalid price")
     }
-    // drivetrain and transmission are dropdowns, so no need to validate
 }
 
 
