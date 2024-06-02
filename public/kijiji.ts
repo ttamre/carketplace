@@ -125,4 +125,4 @@ export function formatPrice(price:number, currency:string): string {
 }
 
 
-module.exports = {searchTestDatabase}
+module.exports = {searchTestDatabase, validateFormData, formatPrice}
