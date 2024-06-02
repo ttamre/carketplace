@@ -15,7 +15,7 @@ const DB_PATH:string = 'data/database.db'
  * @param   {req.body}  formData 
  * @returns {Array}     filteredData    array of car objects
  */
-function searchTestDatabase(formData:object): Record<string, string|number>[]{
+export function searchTestDatabase(formData:object): Record<string, string|number>[]{
     // Form data validation
     let formDataError:Error|undefined = validateFormData(formData)
     if (formDataError) {
@@ -68,8 +68,6 @@ function searchTestDatabase(formData:object): Record<string, string|number>[]{
         params.push(formData["transmission"])
     }
     
-    console.log(query)
-    console.log(params)
     const db:Database = new BetterSqlite3(DB_PATH)
     const preparedQuery:Statement = db.prepare(query)
     const selectTransaction:Function = db.transaction((params) => {
@@ -94,9 +92,9 @@ function searchTestDatabase(formData:object): Record<string, string|number>[]{
 * @param    {req.body}  formData    form data from POST request
 * @returns  {Error/null}            error if invalid data, null otherwise
 */
-function validateFormData(formData:object): Error|undefined {
+export function validateFormData(formData:object): Error|undefined {    
     // year (ignoring first character due to operator)
-    if (formData["year"].substring(1) && isNaN(formData["year"].substring(1))) {
+    if (formData["year"] && isNaN(formData["year"].substring(1))) {
         return Error("Invalid year")
     }
 
@@ -112,7 +110,7 @@ function validateFormData(formData:object): Error|undefined {
  * @param {number} price    given price
  * @param {string} currency one of ["CAD", "USD", "GBP"]
  */
-function formatPrice(price:number, currency:string): string {
+export function formatPrice(price:number, currency:string): string {
     let currencyMap:Record<string, string> = {
         "CAD": "en-CA",
         "USD": "en-US",

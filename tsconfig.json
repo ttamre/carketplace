@@ -11,7 +11,9 @@
       "allowJs": true,
       "moduleResolution": "node",
       "types": [
-        "node"
+        "node",
+        "express",
+        "jest"
       ],
       "lib": [
         "es6"
@@ -31,5 +33,6 @@
     "exclude": [
       "node_modules",
       "<node_internals>/**",
+      "tests/**/*.test.ts",
     ]
   }
