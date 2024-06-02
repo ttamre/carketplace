@@ -23,3 +23,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Typescript
+out/
+tsconfig.tsbuildinfo
+
+# gcloud projects add-iam-policy-binding ivory-strategy-416312 --member=serviceAccount:ivory-strategy-416312@appspot.gserviceaccount.com --role=roles/artifactregistry.writer
