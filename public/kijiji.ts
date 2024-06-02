@@ -30,19 +30,19 @@ function searchTestDatabase(formData:object): Record<string, string|number>[]{
     // Filter year
     if (formData["year"]) {
         // Determine if an operator is present (=, !, <, >, +, -)
-        let operator_map:Record<string, string> = {"+": ">=", "-": "<=", "!": "!=", "<": "<", ">": ">"}
+        let operator_map:Record<string, string> = {"+": ">=", "-": "<=", "!": "!=", "<": "<", ">": ">", "=": "="}
 
         // If operator is present, use it and parse year around it
-        if (isNaN(formData["year"][0]) && "!=+-<>".includes(formData["year"][0])) {
+        if (formData["year"][0] in operator_map) {
             let operator:string = operator_map[formData["year"][0]]
-            query += ` AND year ? ?`
-            params.push(operator)
+            query += ` AND year ${operator} ?`
             params.push(formData["year"].substring(1))
-        } else if (!isNaN(formData["year"])) {
+        // If no operator is present, use default equality operator
+        } else if (Number(formData["year"])) {
             query += ' AND year = ?'
             params.push(formData["year"])
         } else {
-            console.error("received invalid year from form data")
+            console.error("received non-numeric year value")
         }
     }
 
@@ -68,6 +68,8 @@ function searchTestDatabase(formData:object): Record<string, string|number>[]{
         params.push(formData["transmission"])
     }
     
+    console.log(query)
+    console.log(params)
     const db:Database = new BetterSqlite3(DB_PATH)
     const preparedQuery:Statement = db.prepare(query)
     const selectTransaction:Function = db.transaction((params) => {
@@ -76,6 +78,7 @@ function searchTestDatabase(formData:object): Record<string, string|number>[]{
     
     let results:Record<string, string|number>[] = selectTransaction(params)
 
+    // Format prices for each car
     results.forEach((car:Record<string, string|number>) => {
         if (typeof car["price"] == 'number') {
             car["price"] = formatPrice(car["price"], "CAD")
@@ -97,6 +100,7 @@ function validateFormData(formData:object): Error|undefined {
     }
 
     // TODO make (XSS + SQL injection) - dont sanitize, just reject if invalid
+
 
     // TODO model (XSS + SQL injection) - dont sanitize, just reject if invalid
 
