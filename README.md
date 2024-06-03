@@ -10,7 +10,9 @@
 
 <!-- DESCRIPTION -->
 <h2 style="font-family:monospace">Description</h2>
-<p style="font-family:monospace">Used vehicle website, built with typescript, node, express, and ejs. Hosted with Google App Engine.</p>
+<p style="font-family:monospace">Used vehicle website, built with typescript, node, express, and ejs.</p>
+<p style="font-family:monospace">Hosted with Google Cloud Build + Google App Engine
+
 <a style="font-family:monospace" href="http://www.carketplace.ca" target="_blank" rel="noopener noreferrer">Link</a>
 
 <!-- INSTALLATION -->
@@ -37,12 +39,6 @@ npm run build
 
 # Run this to serve the app
 npm start
-
-
-
-# gcloud commands for building/deployment
-gcloud builds submit     # build in cloud build (also triggers on push)
-gcloud app deploy       # deploy to app engine
 ```
 
 <p style="font-family:monospace">see <b>package.json</b> for dev/test commands</p>
@@ -50,3 +46,5 @@ gcloud app deploy       # deploy to app engine
 <!-- LICENSE -->
 <h2 style="font-family:monospace">License</h2>
 <p style="font-family:monospace">This project is licensed under the GNU v3 General Public License. For more information, see the <a href="LICENSE">LICENSE</a></p>
+
+<img src="public/images/demo.png">

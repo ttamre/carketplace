@@ -22,3 +22,7 @@ tsconfig.tsbuildinfo
 
 # Node.js dependencies:
 node_modules/
+
+# README + images
+README.md
+public/images/demo.png
