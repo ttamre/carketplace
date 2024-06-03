@@ -6,7 +6,6 @@
     "dev": "nodemon public/server.ts",
     "test": "npx jest --detectOpenHandles --forceExit",
     "build": "npx tsc", "gcp-build": "npm run build",
-    "deploy": "gcloud app deploy",
     "start": "node out/server.js"
   },
   "repository": {

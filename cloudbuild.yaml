@@ -32,9 +32,9 @@ steps:
     args: ["run", "build"]
 
   # Deploy to App Engine
-  - name: node
-    entrypoint: "npm"
-    args: ["run", "deploy"]
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: "gcloud"
+    args: ["app", "deploy"]
 
 
 # artifacts:
