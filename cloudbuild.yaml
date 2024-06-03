@@ -31,6 +31,10 @@ steps:
     entrypoint: npm
     args: ["run", "build"]
 
+  # Deploy to App Engine
+  - name: "gcloud"
+    args: ["app", "deploy"]
+
 
 # artifacts:
 #   npmPackages:
