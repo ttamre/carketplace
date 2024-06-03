@@ -17,22 +17,22 @@
 steps:
 
   # Install dependencies
-  - name: node
+  - name: deps
     entrypoint: npm
     args: ["install"]
 
   # Run tests
-  - name: node
+  - name: tests
     entrypoint: npm
     args: ["run", "test"]
 
   # Complile typescript
-  - name: node
+  - name: build
     entrypoint: npm
     args: ["run", "build"]
 
   # Deploy to App Engine
-  - name: "gcloud"
+  - name: deploy
     entrypoint: "gcloud"
     args: ["app", "deploy"]
 
