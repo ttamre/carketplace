@@ -31,26 +31,26 @@ const DB_PATH:string = 'data/database.db'
  * @param   {req.body}  formData 
  * @returns {Array}     filteredData    array of car objects
  */
-export function searchTestDatabase(formData:object): Record<string, string|number>[]{
+export function searchTestDatabase(formData : object): Record<string, string | number>[] {
     // Form data validation
-    let formDataError:Error|undefined = validateFormData(formData)
+    let formDataError = validateFormData(formData)
     if (formDataError) {
         console.error(formDataError)
         return []
     }
 
     // Build SQL command based on form data
-    let query:string = 'SELECT * FROM cars WHERE 1=1'
-    let params:string[] = []
+    let query = 'SELECT * FROM cars WHERE 1=1'
+    let params : string[] = []
 
     // Filter year
     if (formData["year"]) {
         // Determine if an operator is present (=, !, <, >, +, -)
-        let operator_map:Record<string, string> = {"+": ">=", "-": "<=", "!": "!=", "<": "<", ">": ">", "=": "="}
+        let operator_map = {"+": ">=", "-": "<=", "!": "!=", "<": "<", ">": ">", "=": "="}
 
         // If operator is present, use it and parse year around it
         if (formData["year"][0] in operator_map) {
-            let operator:string = operator_map[formData["year"][0]]
+            let operator = operator_map[formData["year"][0]]
             query += ` AND year ${operator} ?`
             params.push(formData["year"].substring(1))
         // If no operator is present, use default equality operator
@@ -84,16 +84,16 @@ export function searchTestDatabase(formData:object): Record<string, string|numbe
         params.push(formData["transmission"])
     }
     
-    const db:Database = new BetterSqlite3(DB_PATH)
-    const preparedQuery:Statement = db.prepare(query)
-    const selectTransaction:Function = db.transaction((params) => {
+    const db = new BetterSqlite3(DB_PATH)
+    const preparedQuery = db.prepare(query)
+    const selectTransaction : Function = db.transaction((params) => {
         return preparedQuery.all(params)
     }) 
     
-    let results:Record<string, string|number>[] = selectTransaction(params)
+    let results : Record<string, string | number>[] = selectTransaction(params)
 
     // Format prices for each car
-    results.forEach((car:Record<string, string|number>) => {
+    results.forEach((car : Record<string, string | number>) => {
         if (typeof car["price"] == 'number') {
             car["price"] = formatPrice(car["price"], "CAD")
         }
@@ -108,7 +108,7 @@ export function searchTestDatabase(formData:object): Record<string, string|numbe
 * @param    {req.body}  formData    form data from POST request
 * @returns  {Error/null}            error if invalid data, null otherwise
 */
-export function validateFormData(formData:object): Error|undefined {    
+export function validateFormData(formData : object): Error | undefined {    
     // year (ignoring first character due to operator)
     if (formData["year"] && isNaN(formData["year"].substring(1))) {
         return Error("Invalid year")
@@ -127,13 +127,13 @@ export function validateFormData(formData:object): Error|undefined {
  * @param {string} currency one of ["CAD", "USD", "GBP"]
  */
 export function formatPrice(price:number, currency:string): string {
-    let currencyMap:Record<string, string> = {
+    let currencyMap = {
         "CAD": "en-CA",
         "USD": "en-US",
         "GBP": "en-GB"
     }
 
-    let numberFormat:Intl.NumberFormat = new Intl.NumberFormat(
+    let numberFormat= new Intl.NumberFormat(
         currencyMap[currency],
         {style: 'currency', 'currency': currency})
 

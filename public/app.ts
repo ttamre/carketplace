@@ -25,7 +25,7 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const kijiji = require("./kijiji")
 
-const app:any = express()
+const app = express()
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -38,7 +38,7 @@ app.get("/", (req, res) => {
 
 // POST search results based on request form data
 app.post("/", (req, res) => {
-  let cars:Record<string, string|number>[] = kijiji.searchTestDatabase(req.body)
+  let cars = kijiji.searchTestDatabase(req.body)
   res.render("index", { cars: cars })
 })
 

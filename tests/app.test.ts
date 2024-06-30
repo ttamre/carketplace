@@ -25,7 +25,7 @@ const request = require('supertest')
 import app from '../public/app'
 
 describe('app.ts', () => {
-    let test_app: any
+    let test_app : any
 
     beforeEach(() => {
         test_app = app.listen(8080, () => {
