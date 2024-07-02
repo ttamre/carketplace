@@ -28,4 +28,6 @@ yarn-error.log*
 out/
 tsconfig.tsbuildinfo
 
+# Cache folder
+data/.cache
 # gcloud projects add-iam-policy-binding ivory-strategy-416312 --member=serviceAccount:ivory-strategy-416312@appspot.gserviceaccount.com --role=roles/artifactregistry.writer

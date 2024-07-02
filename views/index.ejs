@@ -89,7 +89,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 					<div class="three columns">
 						<label for="formDrivetrain">Drivetrain</label>
 						<select name="drivetrain" id="formDrivetrain" class="u-full-width">
-							<option value="*" selected="selected">*</option>
+							<option value="" selected="selected">*</option>
 							<option value="RWD">RWD</option>
 							<option value="FWD">FWD</option>
 							<option value="4WD">4WD</option>
@@ -100,6 +100,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 				<div class="row">
 					<!-- Model -->
+					<!-- TODO change model to use a dependent make/model dropdown -->
 					<div class="six columns">
 						<label for="formModel">Model</label>
 						<input name="model" id="formModel" class="u-full-width" type="text" placeholder="ex. Camry">
@@ -108,12 +109,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 					<div class="three columns">
 						<label for="formTransmission">Transmission</label>
 						<select name="transmission" id="formTransmission" class="u-full-width">
-							<option value="*" selected="selected">*</option>
+							<option value="" selected="selected">*</option>
 							<option value="Manual">Manual</option>
 							<option value="Auto">Automatic</option>
 						</select>
 					</div>
 				</div>
+
+				<!-- TODO add mileage and keyword input fields -->
 
 				<!-- Submit -->
 				<input id="formSubmit" type="submit" value="Submit">

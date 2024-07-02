@@ -38,7 +38,8 @@ app.get("/", (req, res) => {
 
 // POST search results based on request form data
 app.post("/", (req, res) => {
-  let cars = kijiji.searchTestDatabase(req.body)
+  let cars = kijiji.searchKijiji(req.body)
+  console.log("cars:", cars)
   res.render("index", { cars: cars })
 })
 
