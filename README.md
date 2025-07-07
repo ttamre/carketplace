@@ -11,9 +11,12 @@
 <!-- DESCRIPTION -->
 <h2 style="font-family:monospace">Description</h2>
 <p style="font-family:monospace">Used vehicle website, built with typescript, node, express, and ejs.</p>
-<p style="font-family:monospace">Hosted with Google Cloud Build + Google App Engine
+<p style="font-family:monospace">Hosted with Google Cloud Build + Google App Engine</p>
+
+<img src="public/images/demo.png" href="http://www.carketplace.ca" target="_blank" rel="noopener noreferrer">
 
 <a style="font-family:monospace" href="http://www.carketplace.ca" target="_blank" rel="noopener noreferrer">Link</a>
+
 
 <!-- INSTALLATION -->
 <h2 style="font-family:monospace">Installation</h2>
@@ -46,5 +49,3 @@ npm start
 <!-- LICENSE -->
 <h2 style="font-family:monospace">License</h2>
 <p style="font-family:monospace">This project is licensed under the GNU v3 General Public License. For more information, see the <a href="LICENSE">LICENSE</a></p>
-
-<img src="public/images/demo.png">
